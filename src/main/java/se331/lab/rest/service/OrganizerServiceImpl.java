@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import se331.lab.rest.dao.OrganizerDao;
 import se331.lab.rest.entity.Organizer;
+import se331.lab.rest.util.LabMapper;
 
 import java.util.List;
 
@@ -22,5 +26,14 @@ public class OrganizerServiceImpl implements OrganizerService{
     @Override
     public Page<Organizer> getOrganizer(Integer page, Integer pageSize) {
         return organizerDao.getOrganizer(PageRequest.of(page,pageSize));
+    }
+    @Override
+    public Organizer save(Organizer organizer) {
+        return organizerDao.save(organizer);
+    }
+
+    @Override
+    public Organizer getOrganizer(Long id) {
+        return organizerDao.getOrganizer(id);
     }
 }
